@@ -22,14 +22,11 @@ main( int argc, char *argv[] )
 	int  b[5] = {9,15,2,-1,5};
 	int  *p   = b;
 
-	sort( a, 4, sizeof(char), strcmp );
-	/*
-	**n_values = 4的目的是不让字符串末尾'0'的位置参与排序，避免'0'的位置发生变动
-	*/
+	sort( a, strlen(a), sizeof(char), strcmp );
 	/*
 	**此处编译器报错的原因是strcmp的参数声明是char*不是void*
 	*/
-	sort( b, 5, sizeof(int) , compare_int);
+	sort( b, sizeof(b) / sizeof(int), sizeof(int) , compare_int);
 
 	printf("%s\n", a);
 
