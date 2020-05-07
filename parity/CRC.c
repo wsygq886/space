@@ -6,6 +6,8 @@
 #include <math.h>
 #include <string.h>
 
+#define DEBUG 0
+
 unsigned int
 string_change_to_int( int *k );
 
@@ -30,6 +32,7 @@ main( int argc, char *argv[] )
 	printf("Enter the POLY:");
 	g = string_change_to_int( &k_g );
 	a = CRC_check( a, g, k_a, k_g );
+	printf("The CRC code:");
 	print_binary( a );
 	
 	return 0;
@@ -80,7 +83,7 @@ CRC_check( unsigned int a, unsigned int g, int k_a, int k_g )
 	do{
 		if( flag ){
 			flag = 0;
-			remain = a ^ ( g << k_a - k_g );
+			remain = a ^ ( g << ( k_a - k_g ) );
 		}else{
 			remain ^= g;
 		}
@@ -95,7 +98,9 @@ CRC_check( unsigned int a, unsigned int g, int k_a, int k_g )
 				cnt = 0;
 			}
 		}
+#if DEBUG
 		print_binary( remain );
+#endif
 	}while( cnt > 0 || count_bits(remain) == k_g );
 	a <<= k_g - 1;
 	a |= remain;
