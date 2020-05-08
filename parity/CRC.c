@@ -1,5 +1,5 @@
 ﻿/*
-**CRC_check by WWIandMC 2020/05/07
+**CRC_code by WWIandMC 2020/05/07
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -103,7 +103,7 @@ CRC_check( unsigned int a, unsigned int g, int k_a, int k_g )
 #endif
 	}while( cnt > 0 || count_bits(remain) == k_g );
 	a <<= k_g - 1;
-	a |= remain;
+	a ^= remain;
 
 	return a;
 }
