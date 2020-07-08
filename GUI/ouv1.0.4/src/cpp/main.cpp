@@ -16,7 +16,7 @@ main( int argc, char *argv[] )
 	ACL_Sound pm;
 	MOUSEMSG m;
 	
-	_chdir( "../resource" );		/*改变当前工作目录到上一级的resource*/ 
+	_chdir( "./resource" );		/*改变当前工作目录到上一级的resource*/ 
 	initgraph( 1440 , 900 );
 
 	loadSound( "open_info.wma", &pm );
