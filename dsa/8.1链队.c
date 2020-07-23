@@ -22,7 +22,8 @@ initQueue( lQueue **q );
 void
 destroyQueue( lQueue *q );
 
-#define queueEmpty(q) ( q->rear == NULL )
+void
+queueEmpty( lQueue *q );
 
 void
 enQueue( lQueue *q, ElemType e );
@@ -93,4 +94,10 @@ deQueue( lQueue *q, ElemType *e )
 	*e = q->front->data;
 	free(t);
 	return TRUE;
+}
+
+void
+queueEmpty( lQueue *q )
+{
+	return ( q->rear == NULL );
 }

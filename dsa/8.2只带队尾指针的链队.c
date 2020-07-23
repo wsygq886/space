@@ -11,12 +11,14 @@ typedef struct _qnode{
 	struct _qnode *next;
 }qnode;
 
-#define initQueue(rear) rear = NULL
+void
+initQueue( qnode **rear );
 
 void
 destroyQueue( qnode *rear );
 
-#define queueEmpty(rear) ( rear == NULL )
+int
+queueEmpty( qnode *rear );
 
 void
 enQueue( qnode **rear, ElemType e );
@@ -39,6 +41,12 @@ main( ElemType argc, char **argv )
 	}
 	destroyQueue( rear );
 	return 0;
+}
+
+void
+initQueue( qnode **rear )
+{
+	*rear = NULL;
 }
 
 void
@@ -89,4 +97,10 @@ destroyQueue( qnode *rear )
 		}
 		free( rear );
 	}
+}
+
+int
+queueEmpty( qnode *rear )
+{
+	return ( rear == NULL );
 }
