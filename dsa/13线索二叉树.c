@@ -19,12 +19,14 @@ createThread(tbtnode* t);
 void
 InOrderTraverse_Thr(tbtnode* t);
 
-tbtnode* pre;
-
 int main()
 {
 	tbtnode* t;
 	createTree(&t);
+	/*
+	*	输入样例
+	*	ABD#G###CE##F##
+	*/
 	t = createThread(t);
 	InOrderTraverse_Thr(t);
 
@@ -47,11 +49,13 @@ createTree(tbtnode** t)
 	}
 }
 
+tbtnode* pre;
+
 void
 Thread(tbtnode* p)
 {
 	if (p != NULL) {
-		Thread(p->lchild);
+		Thread(p->lchild);		//中序遍历先遍历左子树
 		if (p->lchild == NULL) {
 			p->ltag = 1;
 			p->lchild = pre;
@@ -67,7 +71,7 @@ Thread(tbtnode* p)
 			pre->rtag = 0;
 		}
 		pre = p;
-		Thread(p->rchild);
+		Thread(p->rchild);		//中序遍历后遍历右子树
 	}		
 }
 
