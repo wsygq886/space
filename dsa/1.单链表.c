@@ -52,8 +52,7 @@ void createList(linkList* l, int* a, int n) {
 	tail->next = NULL;
 }
 
-void
-destroyList(linkList* l) {
+void destroyList(linkList* l) {
 	linkList* p;
 	for (l = l->next; l != NULL; l = p) {
 		p = l->next;
