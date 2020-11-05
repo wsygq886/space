@@ -3,33 +3,35 @@
 #include <string>
 using namespace std;
 
-void ifm(void);
+#define LEFT  true
+#define RIGHT false
+
+void ifm(bool tag, char ch, int index);
 //打印错误信息并结束程序
 
 int main() {
 	string str;
 	cin >> str;
 	stack<char> sch;	//这是一个元素为char类型的栈
-	for (string::iterator it = str.begin(); it < str.end(); it++) {
-		//it是str的迭代器, *it就是一个char, 相当于str[0,1,...]
-		if (*it == '(' || *it == '[') {
-			sch.push(*it);
+	for (int i = 0; i < str.size(); i++) {
+		if (str[i] == '(' || str[i] == '[') {
+			sch.push(str[i]);
 			//读取到左括号入栈
 		}
 		else {
 			//读取到右括号
 			if (sch.empty()) {	//若栈为空返回true, 否则返回false
-				ifm();
-				//若栈为空说明有多余的右括号, 结束程序
+				ifm(LEFT, str[i], i);
+				//若栈为空说明缺少左括号, 结束程序
 				break;
 			}
 			switch (sch.top()) {
 				//返回栈顶的左括号
 			case '(':
 				//栈顶为 ( 时
-				if (*it != ')') {
-					ifm();
-					//若*it不为 ) , 说明此时的右括号没有左括号和他匹配, 结束程序
+				if (str[i] != ')') {
+					ifm(RIGHT, sch.top(), i);
+					//若str[i]不为 ) , 说明此时缺少右括号和 ( 匹配, 结束程序
 				}
 				else {
 					sch.pop();
@@ -38,9 +40,9 @@ int main() {
 				break;
 			case '[':
 				//当栈顶为 [ 时
-				if (*it != ']') {
-					ifm();
-					//若*it不为 ] , 说明此时的右括号没有左括号和他匹配, 结束程序
+				if (str[i] != ']') {
+					ifm(RIGHT, sch.top(), i);
+					//若str[i]不为 ] , 说明此时的缺少右括号和 ] 匹配, 结束程序
 				}
 				else {
 					sch.pop();
@@ -50,9 +52,14 @@ int main() {
 			}
 		}
 	}
+	while (sch.size() > 1) {
+		//若栈内仍有括号, 为了输出第一个不配对的符号, 循环执行出栈直到栈内只有一个括号
+		sch.pop();
+	}
 	if (!sch.empty()) {
 		//遍历完表达式之后栈不为空, 说明有多余的左括号
-		ifm();
+		ifm(RIGHT, sch.top(), -1);
+		//打印第一个不配对的符号, 下标显示0说明
 	}
 	else {
 		cout << "匹配" << endl;
@@ -61,8 +68,14 @@ int main() {
 	return 0;
 }
 
-
-void ifm(void) {
+void ifm(bool tag, char ch, int index) {
 	cout << "此串括号匹配不合法" << endl;
+	cout << index + 1 << ": ";
+	if (tag) {
+		cout << "?-" << ch << endl;
+	}
+	else {
+		cout << ch << "-?" << endl;
+	}
 	exit(0);
 }
