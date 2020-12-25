@@ -5,26 +5,26 @@ using namespace std;
 struct Stu {
     string name;
     int ID;
-    Stu();			//Stu的构造函数, 用于自动初始化
-    void input();	//用于键盘输入姓名和学号的方法
-    void show();	//用于在控制台输出姓名和学号的方法
+    Stu();          //Stu的构造函数, 用于自动初始化
+    void input();   //用于键盘输入姓名和学号的方法
+    void show();    //用于在控制台输出姓名和学号的方法
 };
 
-const int SIZE = 10;	//数组的大小
+const int SIZE = 10;    //数组的大小
 
 struct Stu_list {
     Stu data[SIZE];
-    int length;							//保存当前人数
-    Stu_list();							//Stu_list的构造函数
+    int length;                         //保存当前人数
+    Stu_list();                         //Stu_list的构造函数
     bool nameSearch(const string& name);//按照给定的name查找对应成员
-    bool insert();	                    //在指定位置插入一名成员，成功返回真，否则返回假
-    bool push_back(const Stu& e);		//在表尾加入一名新成员
-    bool erase();					    //在指定位置删除一名成员，成功返回真，否则返回假
-    void Sort();	                    //按照给定的ID二分查找对应成员
+    bool insert();                      //在指定位置插入一名成员，成功返回真，否则返回假
+    bool push_back(const Stu& e);       //在表尾加入一名新成员
+    bool erase();                       //在指定位置删除一名成员，成功返回真，否则返回假
+    void Sort();                        //按照给定的ID二分查找对应成员
     int BinarySearch(const int ID);     //二分搜索
-    void dispList();					//打印整个顺序表
-    void storage();						//显示当前人数和存储状况
-    void clear();						//将length置零，清空顺序表
+    void dispList();                    //打印整个顺序表
+    void storage();                     //显示当前人数和存储状况
+    void clear();                       //将length置零，清空顺序表
 };
 
 string info[7] = {
