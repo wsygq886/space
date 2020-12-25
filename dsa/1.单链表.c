@@ -7,21 +7,13 @@ typedef struct _node {
 }linkList;
 
 void initList(linkList** l);
-
 void createList(linkList* l, int* a, int n);
-
 void destroyList(linkList* l);
-
 void sort(linkList* l);
-
 void split(linkList* l, linkList** l2);
-
 void delmaxnode(linkList* l);
-
 void printList(linkList* l);
-
 void reverse(linkList* l);
-
 void move(linkList* l);
 
 int main(int argc, char** argv) {
@@ -29,7 +21,7 @@ int main(int argc, char** argv) {
 	linkList* l, * l2;
 	initList(&l);
 	createList(l, a, sizeof(a) / sizeof(int));
-	move(l);
+	reverse(l);
 	printList(l);
 	destroyList(l);
 	return 0;

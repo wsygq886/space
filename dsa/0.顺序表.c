@@ -17,7 +17,7 @@ void   initList(SqList** l);						//初始化一个空的线性表
 void   createList(SqList* l, ElemType a[], int n);	//建立一个线性表
 void   destroyList(SqList* l);						//销毁线性表
 Status listEmpty(SqList* l);						//判断线性表是否为空
-int    listlength(SqList* l);						//取得线性表的长度
+int    listLength(SqList* l);						//取得线性表的长度
 void   dispList(SqList* l);							//打印线性表
 int    getElem(SqList* l, int i, ElemType* e);		//取得线性表中指定位置的元素
 int    locateElem(SqList* l, ElemType e);		    //取得线性表中指定元素的位置
